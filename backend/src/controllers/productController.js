@@ -2,6 +2,9 @@ const { Product} = require("../models");
 const { createProductSchema } = require("../schema");
 const AppError = require('../utils/HttpError');
 const HttpStatusText = require('../utils/HttpStatusText');
+const fs = require("fs");
+const path = require("path")
+const {} = require("../utils/")
 
 
 

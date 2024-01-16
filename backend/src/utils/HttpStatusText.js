@@ -1,5 +1,5 @@
 const SUCCESS = "success"
-const FAIL = "failkkkkkkkkkkkkk"
+const FAIL = "fail"
 const ERROR = "error"
 
 
