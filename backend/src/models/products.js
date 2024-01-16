@@ -1,7 +1,6 @@
-import mongoose from "mongoose";
-const Schema = mongoose.Schema
+const { Schema, model} = require("mongoose");
 
-const productSchema = mongoose.Schema({
+const productSchema = new Schema({
 
     name : {
         type : String,
@@ -30,13 +29,13 @@ const productSchema = mongoose.Schema({
 
     category : {
               type: Schema.Types.ObjectId,
-              ref : Category
+              ref : 'Category'
     },
    
 },{
         timestamps : true
 })
 
-const Product = mongoose.model('Product',productSchema)
+const Product = model("Product", productSchema);
 
-export default Product
+module.exports = Product

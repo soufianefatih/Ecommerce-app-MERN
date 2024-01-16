@@ -22,11 +22,12 @@ app.use(cors())
  app.use(bodyParser.json());
 
 
-
 //* Require Routes
+const productRoutes = require("./routes/productRouter");
 
 
 //* Register Our Routes
+app.use("/v1/product", productRoutes);
 
 
 

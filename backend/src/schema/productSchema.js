@@ -8,10 +8,19 @@ const createProductSchema = Joi.object({
         "string.base": "Field name must be a string",
       }),
    
-      description: Joi.string().required().messages({
+      description: Joi.string().required().trim().min(10).messages({
         "any.required": "Missing required description field",
         "string.base": "Field description must be a string",
       }),
+      price: Joi.number().integer().messages({
+        "any.required": "Missing required description field",
+        "string.base": "Field description must be a string",
+      }),
+      qty: Joi.number().integer().messages({
+        "any.required": "Missing required description field",
+        "string.base": "Field description must be a string",
+      }),
+     
   });
 
   
