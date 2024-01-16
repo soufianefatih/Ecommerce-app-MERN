@@ -21,8 +21,11 @@ const productSchema = mongoose.Schema({
     },
 
     image: {
-        type : String,
-        required : true
+        type : Object,
+        default : {
+            url : "",
+            publicId : null,
+        }
     },
 
     category : {
@@ -31,8 +34,7 @@ const productSchema = mongoose.Schema({
     },
    
 },{
-    timestamps : true
-
+        timestamps : true
 })
 
 const Product = mongoose.model('Product',productSchema)
