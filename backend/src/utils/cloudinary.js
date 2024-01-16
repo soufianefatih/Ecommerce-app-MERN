@@ -1,7 +1,7 @@
 const cloudinary = require("cloudinary")
 
 
-const cloudinary = require('cloudinary').v2;
+// const cloudinary = require('cloudinary').v2;
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_CLOUD_KEY,
@@ -32,4 +32,10 @@ const cloudinaryRemoveImage = async(imagePublicId) =>{
     } catch (error) {
         return error
     }
+}
+
+
+module.exports = {
+    cloudinaryUploadImage ,
+    cloudinaryRemoveImage
 }

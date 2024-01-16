@@ -4,7 +4,7 @@ const AppError = require('../utils/HttpError');
 const HttpStatusText = require('../utils/HttpStatusText');
 const fs = require("fs");
 const path = require("path")
-const {} = require("../utils/")
+const {cloudinaryUploadImage} = require("../utils/cloudinary")
 
 
 
@@ -19,14 +19,23 @@ exports.create = async (req, res, next) => {
     const err = new AppError(error, 404);
     return next(err);
   }
+  if (!req.file) {
+    return   res.status(400).json({ status : HttpStatusText.ERROR, message : "no image provided" });
 
-  const { name,description,price,qty} = value;
+  }
+
+  const imagePath = path.join(__dirname,`../images/${req.file.filename}`)
+  const re = await cloudinaryUploadImage(imagePath)
+
+  const { name,description,price,qty,image} = value;
   
   const result = await Product.create({
-    name,description,price,qty
+    name,description,price,qty,image : {url: re.secure_url,publicId: re.public_id}
   });
 
   res.status(201).json({ status : HttpStatusText.SUCCESS, data: {result} });
+
+  fs.unlinkSync(imagePath)
 };
 
 
