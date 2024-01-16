@@ -8,7 +8,7 @@ const connectToMongo = async () => {
     await mongoose.connect(DB_CONNECT)
     
 .then(() => {
-    console.log('Connected to MongoDB Gestion Rendez-vous');
+    console.log('Connected to MongoDB E-commerce');
   })
   .catch((error) => {
     console.log(error.message);
