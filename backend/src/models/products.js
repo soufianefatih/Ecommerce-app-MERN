@@ -20,12 +20,12 @@ const productSchema = new Schema({
     },
 
     image: {
-        type : Object,
-        default : {
-            url : "",
-            publicId : null,
-        }
-    },
+        type: Object,
+        default: {
+          url: "",
+          publicId: null,
+        },
+      },
 
     category : {
               type: Schema.Types.ObjectId,

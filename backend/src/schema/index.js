@@ -1,6 +1,6 @@
-const createProductSchema = require("./productSchema");
+const validateCreateProduct= require("./productSchema");
 
 
 module.exports = {
-  createProductSchema 
+  validateCreateProduct
 };

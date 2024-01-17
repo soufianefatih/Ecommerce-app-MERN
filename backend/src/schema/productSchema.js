@@ -1,9 +1,15 @@
 const Joi = require("joi");
 const { regExp, message } = require("../constants");
+const mongoose = require("mongoose");
 
   
-const createProductSchema = Joi.object({
-    name: Joi.string().required().messages({
+
+
+function validateCreateProduct(obj) {
+
+
+const schema = Joi.object({
+      name: Joi.string().required().messages({
         "any.required": "Missing required name field",
         "string.base": "Field name must be a string",
       }),
@@ -22,6 +28,7 @@ const createProductSchema = Joi.object({
       }),
      
   });
-
+    return schema.validate(obj);
+  }
   
-  module.exports = createProductSchema ;
+  module.exports = validateCreateProduct;
