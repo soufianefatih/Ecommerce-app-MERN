@@ -1,6 +1,6 @@
-/* -------------------------------------------------------------------------- */
-/*                               app|| Config                                 */
-/* -------------------------------------------------------------------------- */
+//* -------------------------------------------------------------------------- */
+//*                               app|| Config                                 *//
+//* -------------------------------------------------------------------------- */
 
 
 
@@ -10,7 +10,6 @@ const bodyParser = require("body-parser");
 const AppError = require('./utils/HttpError');
 const handleGlobalErrors = require('./middleware/ErrorMiddleware');
 const cors = require('cors')
-// const{ virifylogin} = require('./middleware');
 
 
 
@@ -24,10 +23,14 @@ app.use(cors())
 
 //* Require Routes
 const productRoutes = require("./routes/productRouter");
+const categoryRoutes = require("./routes/categoryRouter");
+
 
 
 //* Register Our Routes
 app.use("/v1/product", productRoutes);
+app.use("/v1/category",categoryRoutes);
+
 
 
 
