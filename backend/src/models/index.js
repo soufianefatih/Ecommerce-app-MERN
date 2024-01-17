@@ -1,7 +1,9 @@
 const Product = require("./products");
-// const Rdv = require("./rendezvous");
+const Category = require("./categorys");
 
 
 
 
-module.exports = { Product};
+
+
+module.exports = { Product,Category};

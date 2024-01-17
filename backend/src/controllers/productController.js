@@ -10,37 +10,6 @@ const {cloudinaryUploadImage} = require("../utils/cloudinary")
 
 
 // * create  new product
-// exports.createaaa = async (req, res, next) => {
-
-//   const { value, error } = createProductSchema.validate(req.body, {
-//     abortEarly: false,
-//   });
-//   if (error) {
-//     const err = new AppError(error, 404);
-//     return next(err);
-//   }
-//   if (!req.file) {
-//     return   res.status(400).json({ status : HttpStatusText.ERROR, message : "no image provided" });
-
-//   }
-
-//   const imagePath = path.join(__dirname,`../images/${req.file.filename}`)
-//   const re = await cloudinaryUploadImage(imagePath)
-
-//   const { name,description,price,qty} = value;
-//   const image = req.body
-  
-//   const result = await Product.create({
-//     name,description,price,qty,image : {url: re.secure_url,publicId: re.public_id}
-//   });
-
-//   res.status(201).json({ status : HttpStatusText.SUCCESS, data: {result} });
-
-//   fs.unlinkSync(imagePath)
-// };
-
-
-
 exports.create = async (req, res) => {
     // 1. Validation for image
     if (!req.file) {
@@ -57,11 +26,8 @@ exports.create = async (req, res) => {
     const imagePath = path.join(__dirname, `../images/${req.file.filename}`);
     const result = await cloudinaryUploadImage(imagePath);
 
-
-
-
     // 4. Create new post and save it to DB
-    const post = await Product.create({
+    const product = await Product.create({
       name: req.body.name,
       description: req.body.description,
       price: req.body.price,
@@ -73,9 +39,9 @@ exports.create = async (req, res) => {
     });
   
     // 5. Send response to the client
-    res.status(201).json(post);
-  
-    // 6. Remove image from the server
+  res.status(201).json({ status : HttpStatusText.SUCCESS, data: {product} });
+
+    // 6. Remove image from the serve
     fs.unlinkSync(imagePath);
   };
   

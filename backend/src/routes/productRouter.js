@@ -1,7 +1,6 @@
 const express = require("express");
 const productController = require('../controllers/productController')
-// const{virifylogin,userRole}= require('../../middleware')
-const photoUpload = require('../middleware/photoUpload')
+const{photoUpload}= require('../middleware')
 
 const route = express.Router();
 
