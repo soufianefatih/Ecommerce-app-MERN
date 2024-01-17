@@ -26,3 +26,16 @@ exports.create = async (req, res, next) => {
 
   res.status(201).json({ status : HttpStatusText.SUCCESS, data: {result} });
 };
+
+// * get all category
+
+exports.all = async (req, res,next) => {
+
+  const result = await Category.find();
+  if(!result) {
+    const err = new AppError('not found rdv', 404);
+    return next(err);
+  }
+
+  res.status(201).json({ status : HttpStatusText.SUCCESS, data: {result} });
+};
