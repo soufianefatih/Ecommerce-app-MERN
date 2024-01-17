@@ -8,7 +8,9 @@ route
     .post(categoryController.create)
 
 
-
+route 
+    .route('/')
+    .get(categoryController.all)
 
 
 

@@ -45,6 +45,10 @@ exports.create = async (req, res) => {
     // 6. Remove image from the serve
     fs.unlinkSync(imagePath);
   };
+
+
+
+
   
 
 

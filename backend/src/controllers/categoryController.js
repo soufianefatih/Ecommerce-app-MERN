@@ -33,9 +33,9 @@ exports.all = async (req, res,next) => {
 
   const result = await Category.find();
   if(!result) {
-    const err = new AppError('not found rdv', 404);
+    const err = new AppError('not found category', 404);
     return next(err);
   }
 
-  res.status(201).json({ status : HttpStatusText.SUCCESS, data: {result} });
+  res.status(201).json({ status : HttpStatusText.SUCCESS, result });
 };
