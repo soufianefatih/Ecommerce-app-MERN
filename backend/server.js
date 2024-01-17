@@ -8,7 +8,7 @@ require("dotenv").config();
 require('./src/config/database')()
 
 const {PORT} = process.env;
-const PORTS = PORT || 5000;
+const PORTS = PORT || 5050;
 
 
 

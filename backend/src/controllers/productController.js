@@ -32,6 +32,7 @@ exports.create = async (req, res) => {
       description: req.body.description,
       price: req.body.price,
       qty: req.body.qty,
+      category: req.body.category,
       image: {
         url: result.secure_url,
         publicId: result.public_id,

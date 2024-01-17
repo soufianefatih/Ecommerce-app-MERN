@@ -13,15 +13,15 @@ const schema = Joi.object({
       }),
       price: Joi.number().integer().messages({
         "any.required": "Missing required price field",
-        "number.base": "Field description must be a number",
+        "number.base": "Field price must be a number",
       }),
       qty: Joi.number().integer().messages({
         "any.required": "Missing required quantity field",
-        "number.base": "Field description must be a number",
+        "number.base": "Field quantity must be a number",
       }),
       category: Joi.string().required().messages({
         "any.required": "Missing required category field",
-        "string.base": "Field name must be a string",
+        "string.base": "Field category must be a string",
       }),
      
   });
