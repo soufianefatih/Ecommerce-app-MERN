@@ -1,12 +1,5 @@
 const Joi = require("joi");
-const { regExp, message } = require("../constants");
-const mongoose = require("mongoose");
-
-  
-
-
 function validateCreateProduct(obj) {
-
 
 const schema = Joi.object({
       name: Joi.string().required().messages({

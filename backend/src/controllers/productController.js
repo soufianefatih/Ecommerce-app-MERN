@@ -56,8 +56,10 @@ exports.create = async (req, res) => {
     // 3. Upload photo
     const imagePath = path.join(__dirname, `../images/${req.file.filename}`);
     const result = await cloudinaryUploadImage(imagePath);
-    console.log("result",result);
-     console.log("req.body",req.body);
+
+
+
+
     // 4. Create new post and save it to DB
     const post = await Product.create({
       name: req.body.name,
