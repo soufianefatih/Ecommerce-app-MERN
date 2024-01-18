@@ -19,17 +19,17 @@ const userSchema = new Schema(
 
     zipCode: {
         type: String,
-        required: [true, "zipCode is required"],
+        default: ""
       },
 
     address: {
         type: String,
-        required: [true, "adress is required"],
+        default: ""
       },
 
       city: {
         type: String,
-        required: [true, "city is required"],
+        default: ""
       },
 
     password: {

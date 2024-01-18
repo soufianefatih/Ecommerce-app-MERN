@@ -54,12 +54,12 @@ exports.login = async (req, res, next) => {
     const user = await User.findOne({ email });
   
     if (!user) {
-      const err = new AppError('Email is wrong', 401);
+      const err = new AppError('Email or password is wrong', 401);
       return next(err);
     }
   
     if (!user.comparePassword || !user.comparePassword(password)) {
-      const err = new AppError('Password is wrong', 401);
+      const err = new AppError('Password or password is wrong', 401);
       return next(err);
     }
   
