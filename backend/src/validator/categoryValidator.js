@@ -5,7 +5,7 @@ const AppError = require('../utils/HttpError');
 const checkCategoryExistence = async (req, res, next) => {
 
   try {
-    const {_id} = req.params.id
+    const _id= req.params.id
     const existingCategory = await Category.findById(_id);
 
     if (!existingCategory ) {

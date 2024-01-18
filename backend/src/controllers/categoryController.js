@@ -45,8 +45,8 @@ exports.all = async (req, res,next) => {
 // * get one  category
 
 exports.findOneById = async (req, res,next) => {
-
- const result = await Category.findById(req.params.id);
+ const _id = req.params.id
+ const result = await Category.findById(_id);
  if(!result) {
   const err = new AppError('not found category', 404);
   return next(err);

@@ -1,5 +1,6 @@
 const express = require("express");
 const categoryController = require('../controllers/categoryController')
+const checkCategoryExistence  = require('../validator/categoryValidator')
 
 const route = express.Router();
 
@@ -15,7 +16,7 @@ route
  
 route 
     .route('/:id')
-    .get(categoryController.findOneById)    
+    .get( checkCategoryExistence,categoryController.findOneById)    
        
 
 
