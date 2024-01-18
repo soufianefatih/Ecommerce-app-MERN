@@ -1,4 +1,4 @@
-const { Category } = require('../models'); // Replace with the correct path to your User model
+const { Category } = require('../models'); 
 const AppError = require('../utils/HttpError');
 const {isValidObjectId} = require("../constants/regExp")
 
@@ -8,7 +8,7 @@ const checkCategoryExistence = async (req, res, next) => {
 
   try {
     const _id= req.params.id
-    
+
    if (!isValidObjectId(_id)) {
     const err = new AppError('the provided id is not valid', 500);
     return next(err); 
@@ -20,7 +20,7 @@ const checkCategoryExistence = async (req, res, next) => {
        return next(err); // Pass the error to the next middleware
     }
 
-    // If the user doesn't exist, proceed to the next middleware or route handler
+    // If the ucategory doesn't exist, proceed to the next middleware or route handler
     next();
   } catch (error) {
     console.error("Error checking category:", error);
