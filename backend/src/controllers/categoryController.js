@@ -37,7 +37,7 @@ exports.all = async (req, res,next) => {
     return next(err);
   }
 
-  res.status(201).json({ status : HttpStatusText.SUCCESS, result });
+ return res.status(201).json({ status : HttpStatusText.SUCCESS, result });
 };
 
 
@@ -51,7 +51,7 @@ exports.findOneById = async (req, res,next) => {
   const err = new AppError('not found category', 404);
   return next(err);
 }
- res.status(201).json({ status : HttpStatusText.SUCCESS, result});
+ return  res.status(201).json({ status : HttpStatusText.SUCCESS, result});
 
 };
 
@@ -67,7 +67,7 @@ exports.delete = async (req, res,next) => {
     return next(err);
   }
 
-  res.status(201).json({ status : HttpStatusText.SUCCESS, data: null });
+ return res.status(201).json({ status : HttpStatusText.SUCCESS, data: null });
 };
 
 
@@ -94,7 +94,7 @@ exports.update = async (req, res, next) => {
     { new: true, select: "name" } // Options
   );
 
-  res.status(201).json({ status: HttpStatusText.SUCCESS, result });
+  return res.status(201).json({ status: HttpStatusText.SUCCESS, result });
 };
 
 

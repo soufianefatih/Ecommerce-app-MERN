@@ -5,12 +5,20 @@ const{photoUpload}= require('../middleware')
 const route = express.Router();
 
 route 
-    .route('/create')
+    .route('/')
     .post(photoUpload.single("image"),productController.create)
+    .get(productController.all)    
+
 
 route 
-    .route('/')
-    .get(productController.all)    
+    .route('/:id')
+    .get(productController.findOneById)    
+    .delete(productController.delete)    
+
+
+route 
+    .route('/category/:id')
+    .get(productController.categoryProducts)    
 
 
 

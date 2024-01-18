@@ -63,10 +63,50 @@ exports.all = async (req, res,next) => {
 
   
 
+// * get all products have the some category
+
+exports.categoryProducts = async (req, res,next) => {
+  const _id = req.params.id
+  const result = await Product.find({category:_id});
+  if(!result) {
+    const err = new AppError('not found Product', 404);
+    return next(err);
+  }
+
+  res.status(201).json({ status : HttpStatusText.SUCCESS, result });
+};
 
 
 
 
+
+// * get one  category
+
+exports.findOneById = async (req, res,next) => {
+  const _id = req.params.id
+  const result = await Product.findById(_id);
+  if(!result) {
+   const err = new AppError('not found product', 404);
+   return next(err);
+ }
+  return  res.status(201).json({ status : HttpStatusText.SUCCESS, result});
+ 
+ };
+ 
+ 
+ // * delete product ById
+ 
+ exports.delete = async (req, res,next) => {
+   const _id = req.params.id
+   const result = await Product.findByIdAndDelete(_id);
+ 
+   if(!result) {
+     const err = new AppError('not found product', 404);
+     return next(err);
+   }
+ 
+  return res.status(201).json({ status : HttpStatusText.SUCCESS, data: null });
+ };
 
 
 

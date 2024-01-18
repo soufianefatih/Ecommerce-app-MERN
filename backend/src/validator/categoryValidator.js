@@ -10,12 +10,13 @@ const checkCategoryExistence = async (req, res, next) => {
     const _id= req.params.id
     
    if (!isValidObjectId(_id)) {
-    res.status(500).json({ message: 'the provided id is not valid' });
+    const err = new AppError('the provided id is not valid', 500);
+    return next(err); 
    }
     const existingCategory = await Category.findById(_id);
 
     if (!existingCategory ) {
-        const err = new AppError('category not exist', 409);
+        const err = new AppError('category id is not exist', 409);
        return next(err); // Pass the error to the next middleware
     }
 

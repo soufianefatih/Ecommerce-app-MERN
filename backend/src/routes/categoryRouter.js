@@ -4,14 +4,12 @@ const checkCategoryExistence  = require('../validator/categoryValidator')
 
 const route = express.Router();
 
-route 
-    .route('/create')
-    .post(categoryController.create)
 
 
 route 
     .route('/')
     .get(categoryController.all)
+    .post(categoryController.create)
 
 route 
     .route('/:id')
