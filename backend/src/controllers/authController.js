@@ -1,5 +1,5 @@
 const { User } = require("../models");
-const { registerSchema} = require("../schema");
+const { registerSchema,loginSchema} = require("../schema");
 const AppError = require('../utils/HttpError');
 const HttpStatusText = require('../utils/HttpStatusText');
 
@@ -36,3 +36,44 @@ exports.register = async (req, res, next) => {
 
   res.status(201).json({ status : HttpStatusText.SUCCESS, result});
 };
+
+
+
+
+exports.login = async (req, res, next) => {
+    const { value, error } = loginSchema.validate(req.body, {
+      abortEarly: false,
+    });
+  
+    if (error) {
+      const err = new AppError(error, 404);
+      return next(err);
+    }
+  
+    const { email, password } = value;
+    const user = await User.findOne({ email });
+  
+    if (!user) {
+      const err = new AppError('Email is wrong', 401);
+      return next(err);
+    }
+  
+    if (!user.comparePassword || !user.comparePassword(password)) {
+      const err = new AppError('Password is wrong', 401);
+      return next(err);
+    }
+  
+    const accessToken = user.signToken();
+  
+    await User.findOneAndUpdate({ email }, { accessToken });
+    res.json({
+      status: HttpStatusText.SUCCESS,
+      accessToken,
+      user: {
+        id: user.id,
+        userName: user.userName,
+        email: user.email,
+        role : user.role
+      },
+    });
+  };

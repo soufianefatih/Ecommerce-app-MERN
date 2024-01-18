@@ -10,6 +10,9 @@ route
     .route('/register')
     .post(checkEmailExistence,authController.register)
 
+route 
+    .route('/login')
+    .post(authController.login)
 
 
 module.exports = route;
