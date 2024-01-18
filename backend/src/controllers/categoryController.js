@@ -39,3 +39,19 @@ exports.all = async (req, res,next) => {
 
   res.status(201).json({ status : HttpStatusText.SUCCESS, result });
 };
+
+
+
+// * get one  category
+
+exports.one = async (req, res) => {
+
+  try {
+      const category = await category.findById(req.params.id);
+      await category.populate('room_type');
+      await category.populate('hotel');
+      res.json(room);
+  } catch (error) {
+      res.status(400).send(error);
+  };
+};
