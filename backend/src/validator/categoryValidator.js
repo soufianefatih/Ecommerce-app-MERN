@@ -1,11 +1,17 @@
 const { Category } = require('../models'); // Replace with the correct path to your User model
 const AppError = require('../utils/HttpError');
+const {isValidObjectId} = require("../constants/regExp")
+
 
 
 const checkCategoryExistence = async (req, res, next) => {
 
   try {
     const _id= req.params.id
+    
+   if (!isValidObjectId(_id)) {
+    res.status(500).json({ message: 'the provided id is not valid' });
+   }
     const existingCategory = await Category.findById(_id);
 
     if (!existingCategory ) {
