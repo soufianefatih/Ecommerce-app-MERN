@@ -13,12 +13,11 @@ route
     .route('/')
     .get(categoryController.all)
 
- 
 route 
     .route('/:id')
     .get( checkCategoryExistence,categoryController.findOneById)    
+    .delete( checkCategoryExistence,categoryController.delete)    
        
-
 
 
 module.exports = route;

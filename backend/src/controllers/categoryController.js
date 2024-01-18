@@ -56,5 +56,21 @@ exports.findOneById = async (req, res,next) => {
 };
 
 
+// * delete category ById
+
+exports.delete = async (req, res,next) => {
+  const _id = req.params.id
+  const result = await Category.findByIdAndDelete(_id);
+
+  if(!result) {
+    const err = new AppError('not found category', 404);
+    return next(err);
+  }
+
+  res.status(201).json({ status : HttpStatusText.SUCCESS, data: null });
+};
+
+
+
 
 
