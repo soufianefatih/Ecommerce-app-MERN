@@ -27,7 +27,7 @@ const registerSchema = Joi.object({
       "any.required": message.fieldRequired("password"),
       "string.pattern.base": message.passwordInvalid,
     }),
-    adress: Joi.string()
+    address: Joi.string()
     .trim()
     .min(2)
     .required(),
@@ -36,7 +36,7 @@ const registerSchema = Joi.object({
     .trim()
     .min(2)
     .required(),
-    
+
     city: Joi.string()
     .trim()
     .min(2)

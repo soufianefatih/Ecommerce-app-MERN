@@ -24,10 +24,13 @@ app.use(cors())
 //* Require Routes
 const productRoutes = require("./routes/productRouter");
 const categoryRoutes = require("./routes/categoryRouter");
+const userRoutes = require("./routes/userRouter");
+
 
 
 
 //* Register Our Routes
+app.use("/v1/auth",userRoutes);
 app.use("/v1/product", productRoutes);
 app.use("/v1/category",categoryRoutes);
 
