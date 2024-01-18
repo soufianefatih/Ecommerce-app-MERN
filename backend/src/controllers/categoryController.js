@@ -47,10 +47,8 @@ exports.all = async (req, res,next) => {
 exports.one = async (req, res) => {
 
   try {
-      const category = await category.findById(req.params.id);
-      await category.populate('room_type');
-      await category.populate('hotel');
-      res.json(room);
+      const category = await Category.findById(req.params.id);
+      res.json(category);
   } catch (error) {
       res.status(400).send(error);
   };

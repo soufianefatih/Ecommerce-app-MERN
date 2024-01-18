@@ -12,6 +12,12 @@ route
     .route('/')
     .get(categoryController.all)
 
+ 
+route 
+    .route('/:id')
+    .get(categoryController.one)    
+       
+
 
 
 module.exports = route;
