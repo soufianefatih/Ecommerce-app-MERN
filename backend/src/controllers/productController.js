@@ -48,6 +48,18 @@ exports.create = async (req, res) => {
 
 
 
+// * get all products
+
+exports.all = async (req, res,next) => {
+
+  const result = await Product.find();
+  if(!result) {
+    const err = new AppError('not found Product', 404);
+    return next(err);
+  }
+
+  res.status(201).json({ status : HttpStatusText.SUCCESS, result });
+};
 
   
 

@@ -8,6 +8,10 @@ route
     .route('/create')
     .post(photoUpload.single("image"),productController.create)
 
+route 
+    .route('/')
+    .get(productController.all)    
+
 
 
 
