@@ -1,5 +1,5 @@
 const { Category} = require("../models");
-const {createcategorySchema} = require("../schema");
+const {createSchema,updateSchema} = require("../schema");
 const AppError = require('../utils/HttpError');
 const HttpStatusText = require('../utils/HttpStatusText');
 
@@ -9,7 +9,7 @@ const HttpStatusText = require('../utils/HttpStatusText');
 // * create  new category 
 exports.create = async (req, res, next) => {
 
-  const { value, error } = createcategorySchema.validate(req.body, {
+  const { value, error } = createSchema.validate(req.body, {
     abortEarly: false,
   });
   if (error) {
@@ -72,5 +72,53 @@ exports.delete = async (req, res,next) => {
 
 
 
+// * update category
+
+exports.updatea = async (req, res, next) => {
+  const { value, error } = updatecategorySchema.validate(req.body, {
+    abortEarly: false,
+  });
+
+  if (error) {
+    const err = new AppError(error, 404);
+    return next(err);
+  }
+  const _id = req.params.id
+  const {name = newName} = value || {};
+
+  const result = await Category.findOneAndUpdate(
+    { _id},
+    { name}, 
+    { new: true, select: "name" } // Options
+  );
+
+  res.status(201).json({ status: HttpStatusText.SUCCESS, result });
+};
+
+
+
+
+exports.update = async (req, res, next) => {
+  const { value, error } = updateSchema.validate(req.body, {
+    abortEarly: false,
+    allowUnknown: true,
+  });
+
+  if (error) {
+    const err = new AppError(error, 404);
+    return next(err);
+  }
+
+  const _id = req.params.id;
+  const { name: newName } = value || {};
+
+  const result = await Category.findOneAndUpdate(
+    { _id },
+    { name: newName },
+    { new: true, select: "name" } // Options
+  );
+
+  res.status(201).json({ status: HttpStatusText.SUCCESS, result });
+};
 
 

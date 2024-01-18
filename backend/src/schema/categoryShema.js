@@ -1,12 +1,14 @@
-const Joi = require("joi");
+const Joi = require('joi');
 
-  
-const createcategorySchema = Joi.object({
-  name: Joi.string()
+const createSchema = Joi.object({
+  name: Joi.string().trim()
       .required(),
   
 
   });
 
+  const updateSchema = Joi.object({
+    name: Joi.string().trim(),
+  });
   
-  module.exports = createcategorySchema;
+  module.exports =createSchema ,updateSchema;

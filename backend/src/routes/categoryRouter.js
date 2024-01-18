@@ -15,8 +15,11 @@ route
 
 route 
     .route('/:id')
+    .put( checkCategoryExistence,categoryController.update) 
     .get( checkCategoryExistence,categoryController.findOneById)    
     .delete( checkCategoryExistence,categoryController.delete)    
+       
+
        
 
 
