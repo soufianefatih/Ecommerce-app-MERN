@@ -9,7 +9,14 @@ const {cloudinaryUploadImage} = require("../utils/cloudinary")
 
 
 
-// * create  new product
+
+/**-----------------------------------------------
+ * @desc    Create new product
+ * @route   /v1/product
+ * @method  Create
+ * @access  private (only admin)
+ ------------------------------------------------*/
+
 exports.create = async (req, res) => {
     // 1. Validation for image
     if (!req.file) {
@@ -48,7 +55,13 @@ exports.create = async (req, res) => {
 
 
 
-// * get all products
+
+/**-----------------------------------------------
+ * @desc     get all products
+ * @route   /v1/product
+ * @method  get
+ * @access  public 
+ ------------------------------------------------*/
 
 exports.all = async (req, res,next) => {
 
@@ -63,7 +76,13 @@ exports.all = async (req, res,next) => {
 
   
 
-// * get all products have the some category
+
+/**-----------------------------------------------
+ * @desc     get all products have the some category
+ * @route   /v1/product/category/:id
+ * @method  get
+ * @access  public 
+ ------------------------------------------------*/
 
 exports.categoryProducts = async (req, res,next) => {
   const _id = req.params.id
@@ -79,8 +98,12 @@ exports.categoryProducts = async (req, res,next) => {
 
 
 
-
-// * get one  category
+/**-----------------------------------------------
+ * @desc     get one products
+ * @route   /v1/product/:id
+ * @method  get
+ * @access  public 
+ ------------------------------------------------*/
 
 exports.findOneById = async (req, res,next) => {
   const _id = req.params.id
@@ -94,7 +117,13 @@ exports.findOneById = async (req, res,next) => {
  };
  
  
- // * delete product ById
+ 
+ /**-----------------------------------------------
+ * @desc     delete product ById
+ * @route   /v1/product/:id
+ * @method  delete
+ * @access  private(only admin)
+ ------------------------------------------------*/
  
  exports.delete = async (req, res,next) => {
    const _id = req.params.id
@@ -107,6 +136,12 @@ exports.findOneById = async (req, res,next) => {
  
   return res.status(201).json({ status : HttpStatusText.SUCCESS, data: null });
  };
+
+
+
+
+
+
 
 
 
