@@ -1,6 +1,9 @@
 const express = require("express");
 const productController = require('../controllers/productController')
 const{photoUpload}= require('../middleware')
+const checkProductExistence = require("../validator/productValidator")
+const checkCategoryExistence  = require('../validator/categoryValidator')
+
 
 const route = express.Router();
 
@@ -12,13 +15,13 @@ route
 
 route 
     .route('/:id')
-    .get(productController.findOneById)    
-    .delete(productController.delete)    
+    .get(checkProductExistence,productController.findOneById)    
+    .delete(checkProductExistence,productController.delete)    
 
 
 route 
     .route('/category/:id')
-    .get(productController.categoryProducts)    
+    .get(checkCategoryExistence,productController.categoryProducts)    
 
 
 
