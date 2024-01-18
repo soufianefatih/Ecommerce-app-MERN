@@ -15,7 +15,7 @@ route
  
 route 
     .route('/:id')
-    .get(categoryController.one)    
+    .get(categoryController.findOneById)    
        
 
 

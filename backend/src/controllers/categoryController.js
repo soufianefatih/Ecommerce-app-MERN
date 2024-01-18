@@ -44,12 +44,17 @@ exports.all = async (req, res,next) => {
 
 // * get one  category
 
-exports.one = async (req, res) => {
+exports.findOneById = async (req, res,next) => {
 
-  try {
-      const category = await Category.findById(req.params.id);
-      res.json(category);
-  } catch (error) {
-      res.status(400).send(error);
-  };
+ const result = await Category.findById(req.params.id);
+ if(!result) {
+  const err = new AppError('not found category', 404);
+  return next(err);
+}
+ res.status(201).json({ status : HttpStatusText.SUCCESS, result});
+
 };
+
+
+
+
