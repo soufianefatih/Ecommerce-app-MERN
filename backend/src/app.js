@@ -1,5 +1,5 @@
 //* -------------------------------------------------------------------------- */
-//*                               app|| Config                                 *//
+//                               app|| Config                                 //
 //* -------------------------------------------------------------------------- */
 
 
@@ -30,13 +30,11 @@ const orderRoutes = require("./routes/orderRouter");
 
 
 
-
 //* Register Our Routes
 app.use("/v1/auth",userRoutes);
 app.use("/v1/product", productRoutes);
 app.use("/v1/category",categoryRoutes);
 app.use("/v1/order",orderRoutes);
-
 
 
 
