@@ -25,6 +25,8 @@ app.use(cors())
 const productRoutes = require("./routes/productRouter");
 const categoryRoutes = require("./routes/categoryRouter");
 const userRoutes = require("./routes/userRouter");
+const orderRoutes = require("./routes/orderRouter");
+
 
 
 
@@ -33,6 +35,8 @@ const userRoutes = require("./routes/userRouter");
 app.use("/v1/auth",userRoutes);
 app.use("/v1/product", productRoutes);
 app.use("/v1/category",categoryRoutes);
+app.use("/v1/order",orderRoutes);
+
 
 
 
