@@ -84,7 +84,30 @@ exports.login = async (req, res, next) => {
   };
 
 
+/**-----------------------------------------------
+ * @desc    find User by token authorization
+ * @route   /v1/auth/user
+ * @method  Get
+ * @access  private
+ ------------------------------------------------*/
   
-
-
+  exports.findOneById = async (req, res,next) => {
+    const user = await User.findById(req.user._id);
+    console.log("user",user);
+    if(!user) {
+     const err = new AppError('not found user', 404);
+     return next(err);
+   }
+    return  res.status(201).json({ status : HttpStatusText.SUCCESS,
+       user :{
+               _id: user._id,
+               userName: user.userName,
+               email: user.email,
+               address: user.address,
+               city: user.city,
+               zipCode: user.zipCode
+    }});
+   
+   };
+   
   

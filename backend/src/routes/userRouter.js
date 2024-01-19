@@ -1,6 +1,8 @@
 const express = require("express");
 const authController = require('../controllers/authController')
 const checkEmailExistence = require("../validator/checkEmailExistence")
+const {virifylogin} = require("../middleware")
+    
 
 
 
@@ -15,6 +17,9 @@ route
     .route('/register')
     .post(checkEmailExistence,authController.register)
 
+route 
+    .route('/user')
+    .get(virifylogin,authController.findOneById)
 
 
 
