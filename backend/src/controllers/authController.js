@@ -5,7 +5,12 @@ const HttpStatusText = require('../utils/HttpStatusText');
 
 
 
-
+/**-----------------------------------------------
+ * @desc    Register
+ * @route   /v1/auth/register
+ * @method  Create
+ * @access  public 
+ ------------------------------------------------*/
 
 exports.register = async (req, res, next) => {
   console.log('Request body:', req.body); // Add this line for debugging
@@ -39,6 +44,12 @@ exports.register = async (req, res, next) => {
 
 
 
+/**-----------------------------------------------
+ * @desc    Login
+ * @route   /v1/auth/login
+ * @method  Post
+ * @access  public
+ ------------------------------------------------*/
 
 exports.login = async (req, res, next) => {
     const { value, error } = authSchema.loginSchema.validate(req.body, {
