@@ -1,5 +1,5 @@
 const { User } = require("../models");
-const { registerSchema,loginSchema} = require("../schema");
+const {registerSchema ,loginSchema} = require("../schema");
 const AppError = require('../utils/HttpError');
 const HttpStatusText = require('../utils/HttpStatusText');
 
@@ -69,11 +69,11 @@ exports.login = async (req, res, next) => {
     res.json({
       status: HttpStatusText.SUCCESS,
       accessToken,
-      user: {
-        id: user.id,
-        userName: user.userName,
-        email: user.email,
-        role : user.role
-      },
     });
   };
+
+
+  
+
+
+  

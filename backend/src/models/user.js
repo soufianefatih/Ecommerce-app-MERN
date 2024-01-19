@@ -19,7 +19,7 @@ const userSchema = new Schema(
 
     zipCode: {
         type: String,
-        default: ""
+        default: "zipCode"
       },
 
     address: {
