@@ -1,5 +1,5 @@
 const { User } = require("../models");
-const {registerSchema ,loginSchema} = require("../schema");
+const {authSchema} = require("../schema");
 const AppError = require('../utils/HttpError');
 const HttpStatusText = require('../utils/HttpStatusText');
 
@@ -10,7 +10,7 @@ const HttpStatusText = require('../utils/HttpStatusText');
 exports.register = async (req, res, next) => {
   console.log('Request body:', req.body); // Add this line for debugging
 
-  const { value, error } = registerSchema.validate(req.body, {
+  const { value, error } = authSchema.registerSchema.validate(req.body, {
     abortEarly: false,
   });
 
@@ -41,7 +41,7 @@ exports.register = async (req, res, next) => {
 
 
 exports.login = async (req, res, next) => {
-    const { value, error } = loginSchema.validate(req.body, {
+    const { value, error } = authSchema.loginSchema.validate(req.body, {
       abortEarly: false,
     });
   
