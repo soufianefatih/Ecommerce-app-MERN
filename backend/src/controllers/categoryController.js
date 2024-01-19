@@ -6,7 +6,15 @@ const HttpStatusText = require('../utils/HttpStatusText');
 
 
 
-// * create  new category 
+
+
+
+/**-----------------------------------------------
+ * @desc    Create new Category
+ * @route   /v1/category
+ * @method  Create
+ * @access  private (only admin)
+ ------------------------------------------------*/
 exports.create = async (req, res, next) => {
 
   const { value, error } = categorySchema.createSchema.validate(req.body, {
@@ -27,7 +35,14 @@ exports.create = async (req, res, next) => {
   res.status(201).json({ status : HttpStatusText.SUCCESS, data: {result} });
 };
 
-// * get all category
+
+
+/**-----------------------------------------------
+ * @desc    Get ALL Category
+ * @route   /v1/category
+ * @method  all
+ * @access  public 
+ ------------------------------------------------*/
 
 exports.all = async (req, res,next) => {
 
@@ -42,7 +57,14 @@ exports.all = async (req, res,next) => {
 
 
 
-// * get one  category
+
+
+/**-----------------------------------------------
+ * @desc    Get oneCategory
+ * @route   /v1/category/:id
+ * @method  Get
+ * @access  public 
+ ------------------------------------------------*/
 
 exports.findOneById = async (req, res,next) => {
  const _id = req.params.id
@@ -56,8 +78,15 @@ exports.findOneById = async (req, res,next) => {
 };
 
 
-// * delete category ById
 
+
+
+/**-----------------------------------------------
+ * @desc    delete Category
+ * @route   /v1/category/;id
+ * @method  delete
+ * @access  private (only admin)
+ ------------------------------------------------*/
 exports.delete = async (req, res,next) => {
   const _id = req.params.id
   const result = await Category.findByIdAndDelete(_id);
@@ -72,7 +101,15 @@ exports.delete = async (req, res,next) => {
 
 
 
-// * update category
+
+
+
+/**-----------------------------------------------
+ * @desc    Update Category
+ * @route   /v1/category/:id
+ * @method  Update
+ * @access  private (only admin)
+ ------------------------------------------------*/
 
 exports.update = async (req, res, next) => {
   const { value, error } = categorySchema.updateSchema.validate(req.body, {
