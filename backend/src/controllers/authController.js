@@ -93,7 +93,11 @@ exports.login = async (req, res, next) => {
  ------------------------------------------------*/
   
   exports.findOneById = async (req, res,next) => {
-    const user = await User.findById(req.user._id);
+
+    const userId = req.user._id
+
+    const user = await User.findById(userId);
+    
     console.log("user",user);
     if(!user) {
      const err = new AppError('not found user', 404);
