@@ -1,6 +1,5 @@
 const validateCreateProduct= require("./productSchema");
-const  createSchema = require("./categoryShema")
-const  updateSchema = require("./categoryShema")
+const  categorySchema = require("./categoryShema")
 const authSchema  = require("./userSchema")
 // const loginSchema  = require("./loginSchema")
 
@@ -10,5 +9,5 @@ const authSchema  = require("./userSchema")
 
 module.exports = {
   validateCreateProduct,
-  createSchema, updateSchema ,authSchema
+  categorySchema ,authSchema
 };

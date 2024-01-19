@@ -11,4 +11,5 @@ const createSchema = Joi.object({
     name: Joi.string().trim(),
   });
   
-  module.exports =createSchema ,updateSchema;
+  const categorySchema = {createSchema ,updateSchema}
+  module.exports = categorySchema;

@@ -1,5 +1,5 @@
 const { Category} = require("../models");
-const {createSchema,updateSchema} = require("../schema");
+const {categorySchema} = require("../schema");
 const AppError = require('../utils/HttpError');
 const HttpStatusText = require('../utils/HttpStatusText');
 
@@ -9,7 +9,7 @@ const HttpStatusText = require('../utils/HttpStatusText');
 // * create  new category 
 exports.create = async (req, res, next) => {
 
-  const { value, error } = createSchema.validate(req.body, {
+  const { value, error } = categorySchema.createSchema.validate(req.body, {
     abortEarly: false,
   });
   if (error) {
@@ -75,7 +75,7 @@ exports.delete = async (req, res,next) => {
 // * update category
 
 exports.update = async (req, res, next) => {
-  const { value, error } = updateSchema.validate(req.body, {
+  const { value, error } = categorySchema.updateSchema.validate(req.body, {
     abortEarly: false,
     allowUnknown: true,
   });
