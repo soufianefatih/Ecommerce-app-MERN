@@ -1,17 +1,17 @@
 import React from 'react'
 
-export default function ProductListItem() {
+export default function ProductListItem({product}) {
   return (
-    <div className='col-md-4'>
+    <div className='col-md-4 mb-2'>
         <div className='card shadow-sm p-2'>
             <div className='row'>
-                <img src="" alt="" />
+                <img src={product.image.url} alt={product.name} height={250} />
                 <div className='card-body '>
                    <div className="d-flex justify-content-between">
-                        <h5 className='card-title'> Lenovo</h5>
-                        <h5 className='text-danger'>$500</h5>
+                        <h5 className='card-title'> {product.name}</h5>
+                        <h5 className='text-danger'>${product.price}</h5>
                     </div>  
-                    <p className="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Mollitia perferendis nemo maxime similique explicabo nisi repellendus perspiciatis incidunt expedita id </p>                    
+                    <p className="card-text">{product.description.substr(0,100)}{"..."}</p>                    
                    <button className='btn btn-sm btn-primary'>
                       <i className='fas fa-cart-plus'></i>{" "}
                       Add to cart
