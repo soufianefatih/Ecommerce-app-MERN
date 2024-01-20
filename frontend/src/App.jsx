@@ -10,6 +10,7 @@ function App() {
     <Header/>
     <Routes>
       <Route path="/" element ={<Home/>} />
+      <Route path="/products/category/:category_id" element={<Home />} />
     </Routes>
   
     </BrowserRouter>
