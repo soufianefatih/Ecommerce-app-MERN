@@ -1,6 +1,8 @@
+/* eslint-disable react/jsx-no-undef */
 import React, { useEffect, useState } from 'react'
 import ProductListItem from './products/ProductListItem'
 import axios from 'axios';
+import Categories from './categories/Categories';
 
 export default function Home() {
     const [products, setProducts] = useState([]);
@@ -23,6 +25,7 @@ export default function Home() {
 
   return (
     <div className='container'>
+      <Categories/>
       <div className='row my-5'>
            {
              products?.map(product => <ProductListItem  key={product.id} product={product}/>)
