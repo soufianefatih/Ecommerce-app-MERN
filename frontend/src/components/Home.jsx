@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import ProductListItem from './products/ProductListItem'
-import axios from 'axios'
 import Categories from './categories/Categories';
 import { useParams } from 'react-router-dom';
+import {getAllproducts,getOneproduct} from "../services/productServices";
 
 export default function Home() {
     const[products, setProducts] = useState([]);
@@ -12,10 +12,10 @@ export default function Home() {
         const fetchProducts = async () => {
             try {
                if(category_id) {
-                    const response = await axios.get(`http://localhost:5050/v1/product/category/${category_id}`);
+                    const response = await getOneproduct(category_id);
                     setProducts(response.data.result);
                }else {
-                    const response = await axios.get('http://localhost:5050/v1/product');
+                    const response = await getAllproducts();
                     setProducts(response.data.result);
                }
             } catch (error) {
