@@ -16,7 +16,9 @@ route
 route 
     .route('/:id')
     .get(checkProductExistence,productController.findOneById)    
-    .delete(checkProductExistence,productController.delete)    
+    .delete(checkProductExistence,productController.delete)  
+    .put(checkProductExistence,productController.update)    
+  
 
 
 route 

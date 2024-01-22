@@ -27,5 +27,25 @@ const schema = Joi.object({
   });
     return schema.validate(obj);
   }
+
+
+
+  function validateUpdateProduct(obj) {
+    const schema = Joi.object({
+      name: Joi.string().trim().min(2).max(200).messages({
+        "any.required": "Missing required name field",
+        "string.base": "Field name must be a string",
+      }),
+      description: Joi.string().trim().min(10),
+      category: Joi.string().trim(),
+      price: Joi.number().integer().messages({
+        "any.required": "Missing required price field",
+        "number.base": "Field price must be a number",
+      }),
+    });
+    return schema.validate(obj);
+  }
   
-  module.exports = validateCreateProduct;
+
+  const validate = { validateCreateProduct,validateUpdateProduct};
+  module.exports =validate

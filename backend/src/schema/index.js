@@ -1,4 +1,4 @@
-const validateCreateProduct= require("./productSchema");
+const validate= require("./productSchema");
 const  categorySchema = require("./categoryShema")
 const authSchema  = require("./userSchema")
 // const loginSchema  = require("./loginSchema")
@@ -8,6 +8,6 @@ const authSchema  = require("./userSchema")
 
 
 module.exports = {
-  validateCreateProduct,
+  validate,
   categorySchema ,authSchema
 };

@@ -1,5 +1,5 @@
 const { Product} = require("../models");
-const {validateCreateProduct} = require("../schema");
+const {validate} = require("../schema");
 const AppError = require('../utils/HttpError');
 const HttpStatusText = require('../utils/HttpStatusText');
 const fs = require("fs");
@@ -22,7 +22,7 @@ exports.create = async (req, res) => {
     }
   
     // 2. Validation for data
-    const { error } = validateCreateProduct(req.body);
+    const { error } = validate.validateCreateProduct(req.body);
     if (error) {
       return res.status(400).json({ message: error.details[0].message });
     }
@@ -67,22 +67,14 @@ exports.all = async (req, res,next) => {
     const result = await Product.find();
     res.status(201).json({ status : HttpStatusText.SUCCESS, result });
 
-
   } catch (error) {
-    
-  }
-
-  const result = await Product.find();
-  if(!result) {
     const err = new AppError('not found Product', 404);
     return next(err);
   }
 
-  res.status(201).json({ status : HttpStatusText.SUCCESS, result });
 };
 
   
-
 
 /**-----------------------------------------------
  * @desc     get all products have the some category
@@ -145,8 +137,73 @@ exports.findOneById = async (req, res,next) => {
  };
 
 
+/**-----------------------------------------------
+ * @desc    Update Post
+ * @route   /api/posts/:id
+ * @method  PUT
+ * @access  private (only by Admin)
+ ------------------------------------------------*/
+//  exports.updateProduct = async (req, res) => {
+//   // 1. Validation
+//   const { error } = validate.validateUpdateProduct(req.body);
+//   if (error) {
+//     return res.status(400).json({ message: error.details[0].message });
+//   }
 
 
+
+//   // 3. check if this post belong to logged in user
+//   // if (req.user.id !== post.user.toString()) {
+//   //   return res
+//   //     .status(403)
+//   //     .json({ message: "access denied, you are not allowed" });
+//   // }
+
+//   // 4. Update post
+//   const updatedPost = await Product.findByIdAndUpdate(
+//     req.params.id,
+//     {
+//       $set: {
+//         title: req.body.title,
+//         description: req.body.description,
+//         category: req.body.category,
+//       },
+//     },
+//     { new: true }
+//   )
+
+//   // 5. Send response to the client
+//   res.status(200).json(updatedPost);
+// };
+
+
+
+exports.update = async (req, res) => {
+  // 1. Validation
+  const { error } = validate.validateUpdateProduct(req.body);
+  if (error) {
+    return res.status(400).json({ message: error.details[0].message });
+  }
+
+   // 4. Update post
+   let data = req.body;
+   let _id = req.params.id
+   const result = await Product.findByIdAndUpdate(
+    _id,
+    {
+      $set: {
+        name: data.name,
+        description: data.description,
+        category: data.category,
+        price: data.price,
+
+      },
+    },
+    { new: true }
+  )
+
+  return res.status(201).json({ status: HttpStatusText.SUCCESS, result });
+};
 
 
 
