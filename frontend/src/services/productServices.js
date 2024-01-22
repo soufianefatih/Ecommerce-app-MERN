@@ -8,7 +8,11 @@ export function getAllproducts() {
   }
 
 
-  export function getOneproduct(id) {
+  export function getcategorybyAllProducts(id) {
     return axios.get(APP_URL + "/category/" + id);
+  }
+
+  export function getOneProducts(id) {
+    return axios.get(APP_URL +"/"+ id);
   }
 

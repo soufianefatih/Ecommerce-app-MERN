@@ -8,8 +8,6 @@ const {cloudinaryUploadImage} = require("../utils/cloudinary")
 
 
 
-
-
 /**-----------------------------------------------
  * @desc    Create new product
  * @route   /v1/product
@@ -64,6 +62,15 @@ exports.create = async (req, res) => {
  ------------------------------------------------*/
 
 exports.all = async (req, res,next) => {
+
+  try {
+    const result = await Product.find();
+    res.status(201).json({ status : HttpStatusText.SUCCESS, result });
+
+
+  } catch (error) {
+    
+  }
 
   const result = await Product.find();
   if(!result) {
