@@ -1,9 +1,12 @@
 import React from 'react'
-import {useSelector } from 'react-redux'
+import {useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { decrementQ, incrementQ} from '../../redux/slices/cartSlice'
 
 export default function Cart() {
     const { cartItems } = useSelector(state => state.cart)
+    const dispatch = useDispatch()
+
 
     return (
         <div className='container'>
@@ -44,13 +47,17 @@ export default function Cart() {
                                                         </td>
                                                         <td> {item.name} </td>
                                                         <td>
-                                                            <i className="fas fa-caret-down"
+                                                            <i 
+                                                             onClick={() => dispatch(decrementQ(item))}
+                                                            className="fas fa-caret-down"
                                                                 style={{cursor: 'pointer'}}
                                                                 ></i>
                                                             <span className="mx-4">
                                                                 {item.quantity}
                                                             </span>
-                                                            <i className="fas fa-caret-up"
+                                                            <i
+                                                             onClick={() => dispatch(incrementQ(item))}
+                                                            className="fas fa-caret-up"
                                                                 style={{cursor: 'pointer'}}
                                                             ></i>
                                                         </td>
