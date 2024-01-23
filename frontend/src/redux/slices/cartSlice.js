@@ -46,9 +46,15 @@ export const cartSlice = createSlice({
                 }
             }
         },
+        removeFromCart(state, action) {
+            const item = action.payload
+            state.cartItems = state.cartItems.filter(product => product.id !== item.id)
+            localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
+            toast.success('Your product has been removed from the cart')
+        },
     }
 })
 
 const cartReducer = cartSlice.reducer;
-export const { addToCart,decrementQ,incrementQ} = cartSlice.actions;
+export const { addToCart,decrementQ,incrementQ,removeFromCart} = cartSlice.actions;
 export default cartReducer;

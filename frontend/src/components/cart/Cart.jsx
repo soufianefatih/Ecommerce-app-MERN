@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { decrementQ, incrementQ} from '../../redux/slices/cartSlice'
+import { decrementQ, incrementQ,removeFromCart} from '../../redux/slices/cartSlice'
 
 export default function Cart() {
     const { cartItems } = useSelector(state => state.cart)
@@ -64,7 +64,9 @@ export default function Cart() {
                                                         <td> ${item.price} </td>
                                                         <td> ${item.price * item.quantity} </td>
                                                         <td>
-                                                         <i className="fa-regular fa-trash-can text-danger" style={{cursor: 'pointer'}}></i>
+                                                         <i
+                                                            onClick={() => dispatch(removeFromCart(item))}
+                                                         className="fa-regular fa-trash-can text-danger" style={{cursor: 'pointer'}}></i>
                                                         </td>
                                                     </tr>
                                                 ))
