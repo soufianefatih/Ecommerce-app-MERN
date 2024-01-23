@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
-
+import {  useSelector } from 'react-redux'
 export default function Header() {
+
+  const { cartItems } = useSelector(state => state.cart)
+  
   return (
 <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
@@ -19,6 +22,12 @@ export default function Header() {
         <li className="nav-item">
           <Link className="nav-link" to="/login"><i className='fas fa-sign-in'></i> Login</Link>
         </li>
+        <li className="nav-item">
+                            <Link className="nav-link" to="/cart">
+                                <i className="fas fa-shopping-cart"></i> 
+                                ({cartItems.length})
+                            </Link>
+                        </li>
       </ul>
     </div>
   </div>
