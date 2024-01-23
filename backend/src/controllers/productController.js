@@ -106,7 +106,7 @@ exports.categoryProducts = async (req, res,next) => {
 
 exports.findOneById = async (req, res,next) => {
   const _id = req.params.id
-  const result = await Product.findById(_id);
+  const result = await Product.findById(_id).populate('category').exec();
   if(!result) {
    const err = new AppError('not found product', 404);
    return next(err);
@@ -213,7 +213,7 @@ module.exports.updateProductImage = async (req, res) => {
   );
 
   // 6. Send response to client
-  res.status(200).json(update);
+  res.status(200).json({ status : HttpStatusText.SUCCESS, update });
 
   // 7. Remvoe image from the server
   fs.unlinkSync(imagePath);

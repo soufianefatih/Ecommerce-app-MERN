@@ -1,8 +1,11 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { addToCart } from '../../redux/slices/cartSlice'
 
 export default function ProductListItem({product, single}) {
-
+    
+    const dispatch = useDispatch();
     return (
         <>
             {
@@ -29,6 +32,14 @@ export default function ProductListItem({product, single}) {
                                             { product.description }
                                         </p>
                                         <button 
+                                         onClick={() => dispatch(addToCart({
+                                            id: product._id,
+                                            name: product.name,
+                                            quantity: 1,
+                                            maxQty: product.qty,
+                                            price: product.price,
+                                            image: product.image.url
+                                        }))}
                                             className="btn btn-sm btn-primary">
                                             <i className="fas fa-cart-plus"></i>{" "}
                                             Add to cart
@@ -56,8 +67,7 @@ export default function ProductListItem({product, single}) {
                                     </p>
                                     <button 
                                         className="btn btn-sm btn-primary">
-                                        <i className="fas fa-cart-plus"></i>{" "}
-                                        Add to cart
+                                        view more ...
                                     </button>
                                 </div>
                             </div>
