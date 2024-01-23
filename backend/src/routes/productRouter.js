@@ -26,8 +26,9 @@ route
     .get(checkCategoryExistence,productController.categoryProducts)    
 
 
-
-
+route 
+    .route('/upload-image/:id')
+    .put(checkProductExistence,photoUpload.single("image"),productController.updateProductImage)    
 
 
 module.exports = route;

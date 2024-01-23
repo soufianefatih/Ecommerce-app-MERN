@@ -4,7 +4,7 @@ const AppError = require('../utils/HttpError');
 const HttpStatusText = require('../utils/HttpStatusText');
 const fs = require("fs");
 const path = require("path")
-const {cloudinaryUploadImage} = require("../utils/cloudinary")
+const {cloudinaryUploadImage,cloudinaryRemoveImage} = require("../utils/cloudinary")
 
 
 
@@ -127,6 +127,7 @@ exports.findOneById = async (req, res,next) => {
  exports.delete = async (req, res,next) => {
    const _id = req.params.id
    const result = await Product.findByIdAndDelete(_id);
+   await cloudinaryRemoveImage(result.image.publicId);
  
    if(!result) {
      const err = new AppError('not found product', 404);
@@ -137,46 +138,13 @@ exports.findOneById = async (req, res,next) => {
  };
 
 
+ 
 /**-----------------------------------------------
  * @desc    Update Post
  * @route   /api/posts/:id
  * @method  PUT
  * @access  private (only by Admin)
  ------------------------------------------------*/
-//  exports.updateProduct = async (req, res) => {
-//   // 1. Validation
-//   const { error } = validate.validateUpdateProduct(req.body);
-//   if (error) {
-//     return res.status(400).json({ message: error.details[0].message });
-//   }
-
-
-
-//   // 3. check if this post belong to logged in user
-//   // if (req.user.id !== post.user.toString()) {
-//   //   return res
-//   //     .status(403)
-//   //     .json({ message: "access denied, you are not allowed" });
-//   // }
-
-//   // 4. Update post
-//   const updatedPost = await Product.findByIdAndUpdate(
-//     req.params.id,
-//     {
-//       $set: {
-//         title: req.body.title,
-//         description: req.body.description,
-//         category: req.body.category,
-//       },
-//     },
-//     { new: true }
-//   )
-
-//   // 5. Send response to the client
-//   res.status(200).json(updatedPost);
-// };
-
-
 
 exports.update = async (req, res) => {
   // 1. Validation
@@ -185,7 +153,7 @@ exports.update = async (req, res) => {
     return res.status(400).json({ message: error.details[0].message });
   }
 
-   // 4. Update post
+   // 2. Update post
    let data = req.body;
    let _id = req.params.id
    const result = await Product.findByIdAndUpdate(
@@ -208,6 +176,48 @@ exports.update = async (req, res) => {
 
 
 
+/**-----------------------------------------------
+ * @desc    Update Product Image
+ * @route   /api/products/upload-image/:id
+ * @method  PUT
+ * @access  private
+ ------------------------------------------------*/
+
+module.exports.updateProductImage = async (req, res) => {
+  // 1. Validation
+  if (!req.file) {
+    return res.status(400).json({ message: "no image provided" });
+  }
+  // 2. find the product
+  const product = await Product.findById(req.params.id);
+
+  // 3. Delete the old image
+  await cloudinaryRemoveImage(product.image.publicId);
+
+  // 4. Upload new photo
+  const imagePath = path.join(__dirname, `../images/${req.file.filename}`);
+  const result = await cloudinaryUploadImage(imagePath);
+
+  // 5. Update the image field in the db
+  const update = await Product.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: {
+        image: {
+          url: result.secure_url,
+          publicId: result.public_id,
+        },
+      },
+    },
+    { new: true }
+  );
+
+  // 6. Send response to client
+  res.status(200).json(update);
+
+  // 7. Remvoe image from the server
+  fs.unlinkSync(imagePath);
+};
 
 
 

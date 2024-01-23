@@ -32,10 +32,7 @@ const schema = Joi.object({
 
   function validateUpdateProduct(obj) {
     const schema = Joi.object({
-      name: Joi.string().trim().min(2).max(200).messages({
-        "any.required": "Missing required name field",
-        "string.base": "Field name must be a string",
-      }),
+      name: Joi.string().trim().min(2).max(200),
       description: Joi.string().trim().min(10),
       category: Joi.string().trim(),
       price: Joi.number().integer().messages({
