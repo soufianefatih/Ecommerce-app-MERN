@@ -1,38 +1,53 @@
 import { Link } from 'react-router-dom'
 import {  useSelector } from 'react-redux'
+import './style.css'
 export default function Header() {
 
   const { cartItems } = useSelector(state => state.cart)
-  
+
   return (
+
+
+
+
 <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
-    <Link className="navbar-brand" to="/">E-commerce</Link>
-    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
     </button>
-    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+    <Link className="navbar-brand logo" to="/">E-commerce</Link>
+
+    <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
+    <ul className="navbar-nav me-auto mb-2 mt-2 mx-auto ">
         <li className="nav-item">
-          <Link className="nav-link active" aria-current="page" to="/"> <i className='fas fa-home'></i> Home</Link>
+          <Link className="nav-link " aria-current="page" to="/"> Home</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/register"><i className='fas fa-user-plus'></i> Register</Link>
+          <Link className="nav-link" to="/register">products</Link>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" to="/login"><i className='fas fa-sign-in'></i> Login</Link>
+          <Link className="nav-link" to="/login">featured</Link>
         </li>
         <li className="nav-item">
-                            <Link className="nav-link" to="/cart">
-                                <i className="fas fa-shopping-cart"></i> 
-                                ({cartItems.length})
-                            </Link>
-                        </li>
-      </ul>
+          <Link className="nav-link" to="/login">review</Link>
+        </li>
+      </ul>  
+      <div className="icons ">
+        <a href="#" className="fas fa-heart" />
+        { cartItems.length == 0 ?  <Link to="/cart" className="fas fa-shopping-cart" /> 
+                           :     <Link to="/cart" className="fas fa-shopping-cart" > ({cartItems.length})</Link>
+        }
+    <a href="#" className="fas fa-user" />
+     </div>  
     </div>
   </div>
 </nav>
 
+
+
+
+
   )
 }
+
 

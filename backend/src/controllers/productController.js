@@ -164,6 +164,7 @@ exports.update = async (req, res) => {
         description: data.description,
         category: data.category,
         price: data.price,
+        qty : data.qty,
 
       },
     },
