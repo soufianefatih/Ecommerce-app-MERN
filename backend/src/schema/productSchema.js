@@ -1,4 +1,5 @@
 const Joi = require("joi");
+
 function validateCreateProduct(obj) {
 
 const schema = Joi.object({

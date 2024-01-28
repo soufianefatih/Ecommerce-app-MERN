@@ -28,7 +28,7 @@ html {
 .navbar{
   background: #fff !important;
   box-shadow: 0 .5rem 1rem rgba(0,0,0,.1) !important;
-  padding: 1rem 7% !important;
+  padding: .7rem 7% !important;
 
 }
 
@@ -49,16 +49,13 @@ html {
  .navbar a:hover{
   color: var(--orange);
 }
-.icons  {
-position: absolute;
-left: 85%;
-
+.icons {
+font-size: 1.2rem;
 }
 
 .icons a {
-  font-size: 3 rem;
   color: var(--black);
-  margin-left: .7rem;
+  margin-left: .3rem;
   text-decoration: none;
 
 }

@@ -3,6 +3,7 @@ import Header from "./components/layouts/Header"
 import Home from "./components/Home"
 import Product from "./components/products/Product"
 import Cart from "./components/cart/Cart"
+import Carsoul from "./components/layouts/Carsoul"
 
 
 function App() {
@@ -10,6 +11,8 @@ function App() {
   return (
     <BrowserRouter>
     <Header/>
+    <Carsoul/>
+
     <Routes>
       <Route path="/" element ={<Home/>} />
       <Route path="/products/category/:category_id" element={<Home />} />

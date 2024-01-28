@@ -15,16 +15,17 @@ const {cloudinaryUploadImage,cloudinaryRemoveImage} = require("../utils/cloudina
  * @access  private (only admin)
  ------------------------------------------------*/
 
-exports.create = async (req, res) => {
+exports.create = async (req, res,next) => {
     // 1. Validation for image
     if (!req.file) {
-      return res.status(400).json({ message: "no image provided" });
+      return res.status(400).json({ status : HttpStatusText.ERROR , message: "no image provided" });
     }
   
     // 2. Validation for data
     const { error } = validate.validateCreateProduct(req.body);
     if (error) {
-      return res.status(400).json({ message: error.details[0].message });
+      const err = new AppError( error.details[0].message , 500);
+       return next(err);
     }
   
     // 3. Upload photo
@@ -146,13 +147,13 @@ exports.findOneById = async (req, res,next) => {
  * @access  private (only by Admin)
  ------------------------------------------------*/
 
-exports.update = async (req, res) => {
+exports.update = async (req, res,next) => {
   // 1. Validation
   const { error } = validate.validateUpdateProduct(req.body);
   if (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    const err = new AppError(error.details[0].message , 500);
+    return next(err)
   }
-
    // 2. Update post
    let data = req.body;
    let _id = req.params.id
