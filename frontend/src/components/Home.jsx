@@ -3,6 +3,7 @@ import ProductListItem from './products/ProductListItem'
 import Categories from './categories/Categories';
 import { useParams } from 'react-router-dom';
 import {getAllproducts, getcategorybyAllProducts} from "../services/productServices";
+import Header from './layouts/Header';
 
 export default function Home() {
     const[products, setProducts] = useState([]);
@@ -26,7 +27,9 @@ export default function Home() {
     }, [category_id])
 
     return (
-        <div className='container'>
+        <>
+        <Header/>
+        <div className='container my-5'>
             <Categories />
             <div className="row my-5">
                 {
@@ -34,6 +37,7 @@ export default function Home() {
                         key={product._id} product={product} />)
                 }
             </div>
-        </div>
+        </div> 
+        </>
     )
 }

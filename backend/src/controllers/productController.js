@@ -69,7 +69,7 @@ exports.all = async (req, res,next) => {
     res.status(201).json({ status : HttpStatusText.SUCCESS, result });
 
   } catch (error) {
-    const err = new AppError('not found Product', 404);
+    const err = new AppError(error.details[0].message , 404);
     return next(err);
   }
 

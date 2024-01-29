@@ -2,6 +2,8 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { addToCart } from '../../redux/slices/cartSlice'
+import '../layouts/single.css'
+
 
 export default function ProductListItem({product, single}) {
     
@@ -10,6 +12,7 @@ export default function ProductListItem({product, single}) {
         <>
             {
                 single ? 
+                
                     <div className="col-md-10 mx-auto mb-2">
                         <div className="card- mb-3">
                             <div className="row">
@@ -49,8 +52,10 @@ export default function ProductListItem({product, single}) {
                             </div>
                         </div>
                     </div>
-                :
-                <div className='col-md-4 mb-2'>
+                    
+    
+                     :
+                <div className='col-md-4 mb-2 px-2'>
                     <Link to={`/products/${product._id}`} 
                         className="text-decoration-none text-dark">
                         <div className="card shadow-sm">

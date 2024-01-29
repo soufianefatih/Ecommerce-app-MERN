@@ -46,7 +46,7 @@ export default function Cart() {
                                                             />
                                                         </td>
                                                         <td> {item.name} </td>
-                                                        <td>
+                                                        <td >
                                                             <i 
                                                              onClick={() => dispatch(decrementQ(item))}
                                                             className="fas fa-caret-down"

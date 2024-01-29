@@ -1,18 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import Header from "./components/layouts/Header"
 import Home from "./components/Home"
 import Product from "./components/products/Product"
 import Cart from "./components/cart/Cart"
-import Carsoul from "./components/layouts/Carsoul"
+import Navbar from "./components/layouts/Navbar"
 
 
 function App() {
 
   return (
     <BrowserRouter>
-    <Header/>
-    <Carsoul/>
-
+    <Navbar/>
     <Routes>
       <Route path="/" element ={<Home/>} />
       <Route path="/products/category/:category_id" element={<Home />} />
