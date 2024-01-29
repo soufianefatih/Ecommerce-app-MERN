@@ -324,7 +324,6 @@ body {
    * CATEGORY
    */
 
-  .category-list > li { width: calc(50% - 15px); }
 
 
 
@@ -332,7 +331,6 @@ body {
    * PRODUCT
    */
 
-  .product-list > li { width: calc(50% - 12.5px); }
 
 
 
@@ -340,11 +338,8 @@ body {
    * FOOTER
    */
 
-  .footer-brand { width: 100%; }
 
-  .footer-text { max-width: 470px; }
 
-  .footer-list { width: calc(50% - 20px); }
 
 }
 
@@ -409,10 +404,7 @@ body {
    * HERO
    */
 
-  .hero {
-    background-position: center;
-    min-height: 800px;
-  }
+
 
 
 
@@ -420,7 +412,6 @@ body {
    * BLOG
    */
 
-  .blog-list > li { width: calc(50% - 15px); }
 
 
 
@@ -428,24 +419,7 @@ body {
    * NEWSLETTER
    */
 
-  .newsletter-card > * {
-    max-width: 480px;
-    margin-inline: auto;
-  }
-
-  .newsletter-card .card-form { position: relative; }
-
-  .newsletter-card .input-wrapper { margin-bottom: 0; }
-
-  .newsletter-card .btn {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: max-content;
-    padding-inline: 35px;
-    border-radius: 0 6px 6px 0;
-  }
+ 
 
 
 
@@ -453,18 +427,7 @@ body {
    * FOOTER
    */
 
-  .footer-list { width: calc(33.33% - 26.66px); }
-
-  .copyright,
-  .footer-bottom-list { margin-bottom: 0; }
-
-  .footer-bottom .container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 25px 50px;
-  }
+  
 
 }
 
@@ -612,7 +575,6 @@ body {
    * CATEGORY
    */
 
-  .category-list > li:not(:first-child, :nth-child(2)) { width: calc(25% - 22.5px); }
 
 
 
@@ -620,28 +582,8 @@ body {
    * PRODUCT
    */
 
-  .product-list > li { width: calc(33.33% - 16.66px); }
+  
 
-  .product-card .card-actions {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
-    right: 20px;
-    transform: translateY(100px);
-    visibility: hidden;
-    transition: var(--transition-1);
-  }
-
-  .product-card .card-banner { overflow: hidden; }
-
-  .product-card .card-banner:hover .card-actions {
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .product-card .card-action-btn:first-child { border-radius: 6px 0 0 6px; }
-
-  .product-card .card-action-btn:last-child { border-radius: 0 6px 6px 0; }
 
 
 
@@ -649,7 +591,6 @@ body {
    * BLOG
    */
 
-  .blog-list > li { width: calc(33.33% - 20px); }
 
 
 
@@ -657,7 +598,6 @@ body {
    * NEWSLETTER
    */
 
-  .newsletter-card .card-form { max-width: 650px; }
 
 }
 
@@ -707,7 +647,6 @@ body {
    * PRODUCT
    */
 
-  .product-list > li { width: calc(25% - 18.75px); }
 
 
 
@@ -715,13 +654,7 @@ body {
    * FOOTER
    */
 
-  .footer-brand { width: calc(40% - 30px); }
-
-  .footer-text { max-width: 340px; }
-
-  .footer-list { width: calc(20% - 30px); }
-
-  .footer-bottom .container { justify-content: space-between; }
+ 
 
 }
 

@@ -13,7 +13,7 @@ export default function ProductListItem({product, single}) {
             {
                 single ? 
                 
-                    <div className="col-md-10 mx-auto mb-2">
+                    <div className="col-md-10 mx-auto mb-2 mt-5">
                         <div className="card- mb-3">
                             <div className="row">
                                 <div className="col-md-4">
