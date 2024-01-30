@@ -9,7 +9,7 @@ export default function Cart() {
 
 
     return (
-        <div className='container'>
+        <div className='container p-1'>
             <div className="row my-5">
                 <div className="col-md-12">
                     <div className="card">

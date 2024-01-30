@@ -665,8 +665,8 @@ body {
 
 #home {
   width: 100%;
-  height: 60vh;
-  background: url("../../../public/images/red.jpg") top center;
+  height: 70vh;
+  background: url("../../../public/images/bl.jpg") top center;
   background-size: cover;
   margin-bottom: -200px;
 }
