@@ -12,7 +12,7 @@ const HttpStatusText = require('../utils/HttpStatusText');
  * @access  public 
  ------------------------------------------------*/
 
-exports.register = async (req, res, next) => {
+exports.registera = async (req, res, next) => {
   console.log('Request body:', req.body); // Add this line for debugging
 
   const { value, error } = authSchema.registerSchema.validate(req.body, {
@@ -116,3 +116,46 @@ exports.login = async (req, res, next) => {
    };
    
   
+
+
+   // Assuming you have the following import statements at the top of your file
+// const AppError = require('./path-to-AppError'); // Import your custom error class
+// const HttpStatusText = require('./path-to-HttpStatusText'); // Import your custom HTTP status texts
+// const authSchema = require('./path-to-authSchema'); // Import your validation schema
+// const User = require('./path-to-User'); // Import your User model
+
+exports.register = async (req, res, next) => {
+
+  try {
+    const { value, error } = authSchema.registerSchema.validate(req.body, {
+      abortEarly: false,
+    });
+
+    console.log('Validation result:', { value, error }); // Add this line for debugging
+
+    if (error) {
+      const errorMessage = error.details.map((detail) => detail.message).join(', ');
+      throw new AppError(`Validation error: ${errorMessage}`, 422);
+    }
+
+    const { userName, email, password, city, address, zipCode } = value || {};
+
+    // Set the role based on the condition (data.type)
+    const data = req.body;
+    const role = data.type ? 'admin' : 'user';
+
+    const result = await User.create({
+      userName,
+      email,
+      password,
+      role,
+      city,
+      address,
+      zipCode,
+    });
+
+    res.status(201).json({ status: HttpStatusText.SUCCESS,message:'User Created successfully', result });
+  } catch (err) {
+    next(err); // Pass the error to the error-handling middleware
+  }
+};
