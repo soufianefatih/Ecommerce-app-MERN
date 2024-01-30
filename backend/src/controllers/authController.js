@@ -23,7 +23,7 @@ exports.register = async (req, res, next) => {
 
   if (error) {
     const errorMessage = error.details.map((detail) => detail.message).join(', ');
-    const validationError = new AppError(`Validation error: ${errorMessage}`, 400);
+    const validationError = new AppError(`Validation error: ${errorMessage}`, 422);
     return next(validationError);
   }
 

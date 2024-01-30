@@ -23,10 +23,11 @@ export default function Navbar() {
       </button>
     </div>
     <div className="header-actions">
-      <button className="header-action-btn">
+     
+     <Link to= '/register'> <button className="header-action-btn">
         <ion-icon name="person-outline" aria-hidden="true" />
         <p className="header-action-label">Sign in</p>
-      </button>
+      </button> </Link>
       <button className="header-action-btn">
         <ion-icon name="search-outline" aria-hidden="true" />
         <p className="header-action-label">Search</p>

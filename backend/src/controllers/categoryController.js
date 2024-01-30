@@ -21,7 +21,7 @@ exports.create = async (req, res, next) => {
     abortEarly: false,
   });
   if (error) {
-    const err = new AppError(error, 404);
+    const err = new AppError(error, 422);
     return next(err);
   }
 

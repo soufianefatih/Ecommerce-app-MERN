@@ -24,7 +24,7 @@ exports.create = async (req, res,next) => {
     // 2. Validation for data
     const { error } = validate.validateCreateProduct(req.body);
     if (error) {
-      const err = new AppError( error.details[0].message , 500);
+      const err = new AppError( error.details[0].message , 422);
        return next(err);
     }
   
