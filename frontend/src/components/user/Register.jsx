@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import {register} from '../../services/userService'
 // import { useSelector } from 'react-redux'
 
 export default function Register() {

@@ -23,25 +23,27 @@ export default function Navbar() {
       </button>
     </div>
     <div className="header-actions">
-     
-     <Link to= '/register'> <button className="header-action-btn">
-        <ion-icon name="person-outline" aria-hidden="true" />
-        <p className="header-action-label">Sign in</p>
-      </button> </Link>
-      <button className="header-action-btn">
+  
+      {/* <button className="header-action-btn">
         <ion-icon name="search-outline" aria-hidden="true" />
         <p className="header-action-label">Search</p>
-      </button>
+      </button> */}
+      
      <Link to="/cart"><button className="header-action-btn">
         <ion-icon name="cart-outline" aria-hidden="true" />
        <p className="header-action-label">Cart</p>
         <div className="btn-badge green" aria-hidden="true">{cartItems.length}</div>
       </button> </Link>
-      <button className="header-action-btn">
-        <ion-icon name="heart-outline" aria-hidden="true" />
-        <p className="header-action-label">Wishlisht</p>
-        <div className="btn-badge" aria-hidden="true">2</div>
-      </button>
+
+      <Link to= '/register'> <button className="header-action-btn">
+        <ion-icon name="person-outline" aria-hidden="true" />
+        <p className="header-action-label">Sign in</p>
+      </button> </Link>
+       <Link to= '/login'> <button className="header-action-btn">
+        <ion-icon name="enter-outline" aria-hidden="true" ></ion-icon>
+        <p className="header-action-label">Sign in</p>
+      </button> </Link>
+   
     </div>
     <button className="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
       <span />
