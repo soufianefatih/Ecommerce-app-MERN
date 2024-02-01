@@ -1,10 +1,39 @@
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {  useSelector } from 'react-redux'
+import { setCurrentUser, setLoggedInOut, setToken } from '../../redux/slices/userSlice'
+import axios from 'axios'
 import './style.css'
 import logo from '../../../public/images/Online.svg'
 export default function Navbar() {
 
   const { cartItems } = useSelector(state => state.cart)
+  const { token, isLoggedIn, user } = useSelector(state => state.user)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+      const getLoggedInUser = async () => {
+          const config = {
+              headers: {
+                  "Content-type": "application/json",
+                  "Authorization": `${token}`
+              }
+          }
+          try {
+              const response = await axios.get('http://localhost:5050/v1/auth/user'
+              , config)
+              dispatch(setCurrentUser(response.data.user))
+          } catch (error) {
+              if(error?.response?.status === 401) {
+                  sessionStorage.removeItem('currentToken')   
+                  dispatch(setLoggedInOut(false))
+                  dispatch(setToken(''))     
+              }
+              console.log(error);
+          }
+      }
+      if (token) getLoggedInUser()
+  }, [token])
 
   return (
 

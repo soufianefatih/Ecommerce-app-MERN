@@ -80,6 +80,14 @@ exports.login = async (req, res, next) => {
     res.json({
       status: HttpStatusText.SUCCESS,
       accessToken,
+      user :{
+        _id: user._id,
+        userName: user.userName,
+        email: user.email,
+        address: user.address,
+        city: user.city,
+        zipCode: user.zipCode
+       }
     });
   };
 
