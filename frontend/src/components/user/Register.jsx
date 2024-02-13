@@ -30,6 +30,7 @@ export default function Register() {
         } catch (error) {
           if (error.response && (error.response.status === 422 || error.response.status === 409 || error.response.status === 500)) {
             setError(error.response.data.message); 
+            console.log(setError(error.response.data.message));
           } else {
             toast.error('An error occurred during registration.');
             console.error(error);
@@ -62,6 +63,8 @@ export default function Register() {
                                         name="username" id="username"
                                         placeholder="Username"
                                         className='form-control' />
+                                        
+                                    
                                 </div>
                                 <div className="mb-3">
                                     <input type="email" 

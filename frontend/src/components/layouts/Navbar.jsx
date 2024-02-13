@@ -1,17 +1,16 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { setCurrentUser, setLoggedInOut, setToken } from '../../redux/slices/userSlice'
+import { setCurrentUser, setToken,setLoggedInOut } from '../../redux/slices/userSlice'
 import axios from 'axios'
-import './style.css'
-import logo from '../../../public/images/Online.svg'
-export default function Navbar() {
+import { toast } from 'react-toastify'
 
-  const { cartItems } = useSelector(state => state.cart)
-  const { token, isLoggedIn, user } = useSelector(state => state.user)
-  const dispatch = useDispatch()
+export default function Header() {
+    const { cartItems } = useSelector(state => state.cart)
+    const { token, isLoggedIn, user } = useSelector(state => state.user)
+    const dispatch = useDispatch()
 
-  useEffect(() => {
+    useEffect(() => {
       const getLoggedInUser = async () => {
           const config = {
               headers: {
@@ -25,8 +24,8 @@ export default function Navbar() {
               dispatch(setCurrentUser(response.data.user))
           } catch (error) {
               if(error?.response?.status === 401) {
-                  sessionStorage.removeItem('currentToken')   
-                  dispatch(setLoggedInOut(false))
+                  sessionStorage.removeItem('currentToken') 
+                  dispatch(setLoggedInOut(false))  
                   dispatch(setToken(''))     
               }
               console.log(error);
@@ -35,85 +34,60 @@ export default function Navbar() {
       if (token) getLoggedInUser()
   }, [token])
 
-  return (
 
 
 
-  <header className="header" data-header>
-  <div className="container">
-    <Link to="/" className="logo">
-      <img src={logo} alt="Casmart logo" width={130} height={70} />
-    </Link>
-    <div className="overlay" data-overlay />
-    <div className="header-search">
-      <input type="search" name="search" placeholder="Search Product..." className="input-field" />
-      <button className="search-btn" aria-label="Search">
-        <ion-icon name="search-outline" />
-      </button>
-    </div>
-    <div className="header-actions">
-  
-      {/* <button className="header-action-btn">
-        <ion-icon name="search-outline" aria-hidden="true" />
-        <p className="header-action-label">Search</p>
-      </button> */}
-      
-     <Link to="/cart"><button className="header-action-btn">
-        <ion-icon name="cart-outline" aria-hidden="true" />
-       <p className="header-action-label">Cart</p>
-        <div className="btn-badge green" aria-hidden="true">{cartItems.length}</div>
-      </button> </Link>
-
-      <Link to= '/register'> <button className="header-action-btn">
-        <ion-icon name="person-outline" aria-hidden="true" />
-        <p className="header-action-label">Sign in</p>
-      </button> </Link>
-       <Link to= '/login'> <button className="header-action-btn">
-        <ion-icon name="enter-outline" aria-hidden="true" ></ion-icon>
-        <p className="header-action-label">Sign in</p>
-      </button> </Link>
-   
-    </div>
-    <button className="nav-open-btn" data-nav-open-btn aria-label="Open Menu">
-      <span />
-      <span />
-      <span />
-    </button>
-    <nav className="navbar" data-navbar>
-      <div className="navbar-top">
-        <a href="#" className="logo">
-          <img src="./assets/images/logo.svg" alt="Casmart logo" width={130} height={31} />
-        </a>
-        <button className="nav-close-btn" data-nav-close-btn aria-label="Close Menu">
-          <ion-icon name="close-outline" />
-        </button>
-      </div>
-      <ul className="navbar-list">
-        <li>
-          <Link to='/' className="navbar-link">Home</Link>
-        </li>
-        <li>
-          <a href="#" className="navbar-link">Shop</a>
-        </li>
-        <li>
-          <a href="#" className="navbar-link">About</a>
-        </li>
-        <li>
-          <a href="#blog" className="navbar-link">Blog</a>
-        </li>
-        <li>
-          <a href="#" className="navbar-link">Contact</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
-
-
-
-
-
-  )
+    return (
+        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+            <div className="container-fluid">
+                <Link className="navbar-brand" to="/">MERN Ecommerce</Link>
+                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="/">
+                                <i className="fas fa-home"></i> Home
+                            </Link>
+                        </li>
+                        {
+                            !isLoggedIn ?
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/register">
+                                        <i className="fas fa-user-plus"></i> Register
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/login">
+                                        <i className="fas fa-sign-in"></i> Login
+                                    </Link>
+                                </li>
+                            </> :
+                            <>
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/user/orders">
+                                        <i className="fas fa-user"></i> { user?.username }
+                                    </Link>
+                                </li>
+                                <li className="nav-item">
+                                    <button className="nav-link border-0 bg-light" 
+                                       >
+                                        <i className="fas fa-sign-in"></i> Logout
+                                    </button>
+                                </li>
+                            </>
+                        }
+                        <li className="nav-item">
+                            <Link className="nav-link" to="/cart">
+                                <i className="fas fa-shopping-cart"></i> 
+                                ({cartItems.length})
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    )
 }
-
-

@@ -46,15 +46,15 @@ export default function Cart() {
                                                             />
                                                         </td>
                                                         <td> {item.name} </td>
-                                                        <td >
+                                                        <td  >
                                                             <i 
                                                              onClick={() => dispatch(decrementQ(item))}
                                                             className="fas fa-caret-down"
                                                                 style={{cursor: 'pointer'}}
                                                                 ></i>
-                                                            <span className="mx-4">
+                                                               <span className="mx-3">
                                                                 {item.quantity}
-                                                            </span>
+                                                                </span>
                                                             <i
                                                              onClick={() => dispatch(incrementQ(item))}
                                                             className="fas fa-caret-up"
