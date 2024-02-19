@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCurrentUser, setLoggedInOut, setToken } from '../../redux/slices/userSlice'
+
 
 export default function Login() {
 
@@ -13,6 +16,16 @@ export default function Login() {
     })
     const [error, setError] = useState('')
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const { isLoggedIn } = useSelector(state => state.user)
+
+  useEffect(()=>{
+
+    if (isLoggedIn) navigate('/')
+
+  },[])
+
+
 
     const loginUser = async (e) => {
         e.preventDefault();
@@ -20,6 +33,9 @@ export default function Login() {
           const response = await axios.post('http://localhost:5050/v1/auth/login', user);
           const { accessToken } = response.data;
           sessionStorage.setItem('Authorization', JSON.stringify(accessToken));
+          dispatch(setLoggedInOut(true))
+          dispatch(setToken(response.data.token))     
+          dispatch(setCurrentUser(response.data.user))
           toast.success(response.data.status);
           navigate('/');
         } catch (error) {

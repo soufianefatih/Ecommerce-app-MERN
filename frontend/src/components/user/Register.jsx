@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 // import { useSelector } from 'react-redux'
 
 export default function Register() {
@@ -15,11 +16,11 @@ export default function Register() {
     })
     const [error, setError] = useState('')
     const navigate = useNavigate()
-    // const { isLoggedIn } = useSelector(state => state.user)
+    const { isLoggedIn } = useSelector(state => state.user)
 
-    // useEffect(() => {
-    //     if (isLoggedIn) navigate('/')
-    // }, [])
+    useEffect(() => {
+        if (isLoggedIn) navigate('/')
+    }, [])
 
     const registerUser = async (e) => {
         e.preventDefault();

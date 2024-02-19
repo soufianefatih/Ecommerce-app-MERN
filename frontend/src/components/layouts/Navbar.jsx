@@ -7,7 +7,7 @@ import { toast } from 'react-toastify'
 
 export default function Header() {
     const { cartItems } = useSelector(state => state.cart)
-    const { token, isLoggedIn, user } = useSelector(state => state.user)
+    const { token,isLoggedIn, user } = useSelector(state => state.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -35,7 +35,14 @@ export default function Header() {
   }, [token])
 
 
-
+  const logoutUser = () => {
+    sessionStorage.removeItem('currentToken')   
+    dispatch(setLoggedInOut(false))
+    dispatch(setToken(''))     
+    dispatch(setCurrentUser(null))
+    toast.success('Logged out successfully')
+    navigate('/login')
+}
 
     return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -68,11 +75,11 @@ export default function Header() {
                             <>
                                 <li className="nav-item">
                                     <Link className="nav-link" to="/user/orders">
-                                        <i className="fas fa-user"></i> { user?.username }
+                                        <i className="fas fa-user"></i> { user?.userName }
                                     </Link>
                                 </li>
                                 <li className="nav-item">
-                                    <button className="nav-link border-0 bg-light" 
+                                    <button className="nav-link border-0 bg-light" onClick={() => logoutUser()}
                                        >
                                         <i className="fas fa-sign-in"></i> Logout
                                     </button>
