@@ -59,6 +59,10 @@ export const cartSlice = createSlice({
             localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
             toast.success('Your product has been removed from the cart')
         },
+        clearCartItems(state, action) {
+            localStorage.removeItem('cartItems')
+            state.cartItems = []
+        }
     }
 })
 
