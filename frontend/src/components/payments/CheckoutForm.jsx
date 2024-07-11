@@ -33,9 +33,7 @@ export default function CheckoutForm() {
         , config)
         dispatch(clearCartItems())
         setIsProcessing(false)
-        toast.success(response.data.message, {
-            position: toast.POSITION.TOP_RIGHT
-        })
+        toast.success(response.data.message)
         navigate('/user/orders')
     } catch (error) {
         setIsProcessing(false)
