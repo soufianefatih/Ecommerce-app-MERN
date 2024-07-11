@@ -5,6 +5,7 @@ import Cart from "./components/cart/Cart"
 import Navbar from "./components/layouts/Navbar"
 import Register from "./components/user/Register"
 import Login from "./components/user/Login"
+import Checkout from "./components/payments/CheckOut"
 
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
       <Route path="/cart" element={<Cart />} />
       <Route path="/register" element={<Register/>} />
       <Route path="/login" element={<Login/>} />
+      <Route path="/checkout" element={<Checkout />} />
+
 
 
 

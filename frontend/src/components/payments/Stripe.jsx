@@ -4,14 +4,16 @@ import { useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from "@stripe/react-stripe-js"
+import CheckoutForm from './CheckoutForm'
+
 
 
 export default function Stripe({amount}) {
-const [clientSecret, setClientSecrer] = useState('')
+const [clientSecret, setClientSecret] = useState('')
 const total = amount * 100
 const { isLoggedIn } = useSelector(state => state.user)
 const navigate = useNavigate ()
-const stripPromise = loadStripe('pk_test_51OtXomAm5lduUsebrC4mRqwKteJsrbZKPmdsQ5AwbuECPYtfS3prqGs2COJd3HqVHFvr2SPND4twGhGK8nYUfWBn00QZHItcLd')
+const stripePromise = loadStripe('pk_test_51OtXomAm5lduUsebrC4mRqwKteJsrbZKPmdsQ5AwbuECPYtfS3prqGs2COJd3HqVHFvr2SPND4twGhGK8nYUfWBn00QZHItcLd')
   
 useEffect(()=>{
       if (!isLoggedIn) {
