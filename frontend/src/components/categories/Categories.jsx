@@ -24,14 +24,19 @@ export default function Categories() {
                     <Link to="/" className="btn btn-outline-dark mx-1" >
                         All
                     </Link>
-                    {
+                 
+                     {
+                       
                         categories?.map(category => (
                             <Link to={`/products/category/${category._id}`} className="btn btn-outline-dark mx-1" 
                                 key={category._id}>
                                 { category.name }
                             </Link>
                         ))
-                    }
+                    } 
+
+
+
                 </div>
             </div>
         </div>
