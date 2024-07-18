@@ -52,7 +52,7 @@ export default function Cart() {
                                                             className="fas fa-caret-down"
                                                                 style={{cursor: 'pointer'}}
                                                                 ></i>
-                                                               <span className="mx-3">
+                                                               <span className="mx-4">
                                                                 {item.quantity}
                                                                 </span>
                                                             <i
