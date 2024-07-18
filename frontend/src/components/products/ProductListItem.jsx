@@ -50,6 +50,7 @@ export default function ProductListItem({product, single}) {
                                 </div>
                             </div>
                         </div>
+                
                     </div>
                     
     
