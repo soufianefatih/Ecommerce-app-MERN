@@ -31,6 +31,11 @@ export default function Home() {
             <Categories />
             <div className="row my-5">
                 {
+                    products.length === 0 ? (
+                        <div className="alert alert-info">
+                            product is empty!
+                        </div>
+                   ):
                     products?.map(product => <ProductListItem 
                         key={product._id} product={product} />)
                 }

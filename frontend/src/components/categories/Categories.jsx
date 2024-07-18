@@ -17,6 +17,7 @@ export default function Categories() {
         fetchCategories()
     }, [])
 
+
     return (
         <div className='container'>
             <div className="row my-5">
@@ -25,9 +26,9 @@ export default function Categories() {
                         All
                     </Link>
                  
-                     {
-                       
-                        categories?.map(category => (
+                     { 
+                    
+                          categories?.map(category => (
                             <Link to={`/products/category/${category._id}`} className="btn btn-outline-dark mx-1" 
                                 key={category._id}>
                                 { category.name }
