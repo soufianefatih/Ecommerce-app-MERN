@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setCurrentUser, setToken,setLoggedInOut } from '../../redux/slices/userSlice'
 import { toast } from 'react-toastify'
-import {login,fetchLoggedInUser} from "../../services/userService";
+import {fetchLoggedInUser} from "../../services/userService";
 
 
 export default function Header() {

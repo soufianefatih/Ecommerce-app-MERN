@@ -5,6 +5,8 @@ import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { setCurrentUser, setLoggedInOut, setToken } from '../../redux/slices/userSlice'
+import {login} from "../../services/userService";
+
 
 
 export default function Login() {
@@ -30,7 +32,7 @@ export default function Login() {
     const loginUser = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:5050/v1/auth/login', user);
+          const response = await login(user);
           const { accessToken } = response.data;
           sessionStorage.setItem('Authorization', JSON.stringify(accessToken));
           dispatch(setLoggedInOut(true))

@@ -10,7 +10,7 @@ axios.defaults.headers = {
 
 // Function to login a user (post request)
 export function login(data) {
-    return axios.post(APP_URL, data);
+    return axios.post(APP_URL + "login", data);
 }
 
 // Function to fetch logged-in user details
@@ -20,6 +20,6 @@ export async function fetchLoggedInUser(token) {
             "Authorization": `${token}`
         }
     };
-    return axios.get(APP_URL +"user", config);
+    return axios.get(APP_URL + "user", config);
 }
 
