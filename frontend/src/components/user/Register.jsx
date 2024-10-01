@@ -3,6 +3,8 @@ import axios from 'axios'
 import { toast } from 'react-toastify'
 import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import {register} from "../../services/userService";
+
 // import { useSelector } from 'react-redux'
 
 export default function Register() {
@@ -25,7 +27,7 @@ export default function Register() {
     const registerUser = async (e) => {
         e.preventDefault();
         try {
-          const response = await axios.post('http://localhost:5050/v1/auth/register', user);
+          const response = await register(user);
           toast.success(response.data.message);
           navigate('/login');
         } catch (error) {

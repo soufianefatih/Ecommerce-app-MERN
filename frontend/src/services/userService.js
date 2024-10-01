@@ -13,6 +13,13 @@ export function login(data) {
     return axios.post(APP_URL + "login", data);
 }
 
+// Function to register a user (post request)
+export function register(data) {
+    return axios.post(APP_URL + "register",data);
+}
+
+
+
 // Function to fetch logged-in user details
 export async function fetchLoggedInUser(token) {
     const config = {
