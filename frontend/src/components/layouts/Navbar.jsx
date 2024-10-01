@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { setCurrentUser, setToken,setLoggedInOut } from '../../redux/slices/userSlice'
 import axios from 'axios'
 import { toast } from 'react-toastify'
+import {login,fetchLoggedInUser} from "../../services/userService";
+
 
 export default function Header() {
     const { cartItems } = useSelector(state => state.cart)
@@ -12,15 +14,9 @@ export default function Header() {
 
     useEffect(() => {
       const getLoggedInUser = async () => {
-          const config = {
-              headers: {
-                  "Content-type": "application/json",
-                  "Authorization": `${token}`
-              }
-          }
+       
           try {
-              const response = await axios.get('http://localhost:5050/v1/auth/user'
-              , config)
+              const response = await fetchLoggedInUser(token)
               dispatch(setCurrentUser(response.data.user))
           } catch (error) {
               if(error?.response?.status === 401) {
