@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setCurrentUser, setToken,setLoggedInOut } from '../../redux/slices/userSlice'
+import axios from 'axios'
 import { toast } from 'react-toastify'
 import {fetchLoggedInUser} from "../../services/userService";
 
@@ -13,7 +14,7 @@ export default function Header() {
 
     useEffect(() => {
       const getLoggedInUser = async () => {
-       
+      
           try {
               const response = await fetchLoggedInUser(token)
               dispatch(setCurrentUser(response.data.user))
@@ -31,7 +32,9 @@ export default function Header() {
 
 
   const logoutUser = () => {
-    sessionStorage.removeItem('currentToken')   
+    sessionStorage.removeItem('currentToken') 
+    sessionStorage.removeItem('Authorization')   
+  
     dispatch(setLoggedInOut(false))
     dispatch(setToken(''))     
     dispatch(setCurrentUser(null))

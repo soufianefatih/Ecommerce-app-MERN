@@ -30,3 +30,22 @@ export async function fetchLoggedInUser(token) {
     return axios.get(APP_URL + "user", config);
 }
 
+
+
+// useEffect(() => {
+//     const getLoggedInUser = async () => {
+     
+//         try {
+//             const response = await fetchLoggedInUser(token)
+//             dispatch(setCurrentUser(response.data.user))
+//         } catch (error) {
+//             if(error?.response?.status === 401) {
+//                 sessionStorage.removeItem('currentToken') 
+//                 dispatch(setLoggedInOut(false))  
+//                 dispatch(setToken(''))     
+//             }
+//             console.log(error);
+//         }
+//     }
+//     if (token) getLoggedInUser()
+// }, [token])
