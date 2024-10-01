@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-const APP_URL = "http://localhost:5050/v1/auth/user";
+const APP_URL = "http://localhost:5050/v1/auth/";
 
 // Configure default headers
 axios.defaults.headers = {
@@ -20,6 +20,6 @@ export async function fetchLoggedInUser(token) {
             "Authorization": `${token}`
         }
     };
-    return axios.get(APP_URL, config);
+    return axios.get(APP_URL +"user", config);
 }
 
